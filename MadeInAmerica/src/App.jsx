@@ -246,7 +246,7 @@ const scheduleData = [
   },
   {
     id: 34,
-    artist: "Kalan.FrfromDetroit  ",
+    artist: "Kalan.Frfr",
     stage: "Freedom Stage",
     start: "2026-09-06T17:15",
     end: "2026-09-06T17:45",
