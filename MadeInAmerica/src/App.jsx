@@ -1,5 +1,15 @@
 import { HashRouter, Routes, Route, NavLink } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  ListGroup
+} from "react-bootstrap";
 import "./App.css";
 
 const scheduleData = [
@@ -27,137 +37,191 @@ const scheduleData = [
 ];
 
 const locations = [
-  { name: "Main Stage", type: "Performance" },
-  { name: "Liberty Stage", type: "Performance" },
-  { name: "Riverfront Stage", type: "Performance" },
-  { name: "Food Vendors", type: "Food" },
-  { name: "Bathrooms", type: "Facilities" },
-  { name: "First Aid Tent", type: "Emergency" },
+  { id: 1, name: "Main Stage", type: "Performance" },
+  { id: 2, name: "Liberty Stage", type: "Performance" },
+  { id: 3, name: "Riverfront Stage", type: "Performance" },
+  { id: 4, name: "Food Vendors", type: "Food" },
+  { id: 5, name: "Bathrooms", type: "Facilities" },
+  { id: 6, name: "First Aid Tent", type: "Emergency" },
 ];
 
-function Layout({ children }) {
+function SiteNavbar() {
   return (
-    <div className="app-shell">
-      <header className="site-header">
-        <h1>Made In America Planner</h1>
-        <p>Plan your day. Discover artists. Build your perfect festival experience.</p>
-        <nav className="nav">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/lineup">Lineup</NavLink>
-          <NavLink to="/schedule">Schedule</NavLink>
-          <NavLink to="/map">Map</NavLink>
-          <NavLink to="/planner">Planner</NavLink>
-          <NavLink to="/tickets">Tickets</NavLink>
-        </nav>
-      </header>
-      <main className="page-content">{children}</main>
-    </div>
+    <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
+      <Container>
+        <Navbar.Brand as={NavLink} to="/">
+          Made In America Planner
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="festival-nav" />
+        <Navbar.Collapse id="festival-nav">
+          <Nav className="ms-auto">
+            <Nav.Link as={NavLink} to="/">Home</Nav.Link>
+            <Nav.Link as={NavLink} to="/lineup">Lineup</Nav.Link>
+            <Nav.Link as={NavLink} to="/schedule">Schedule</Nav.Link>
+            <Nav.Link as={NavLink} to="/map">Map</Nav.Link>
+            <Nav.Link as={NavLink} to="/planner">Planner</Nav.Link>
+            <Nav.Link as={NavLink} to="/tickets">Tickets</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 
 function Home() {
   return (
-    <section>
-      <h2>Welcome</h2>
-      <p>
-        This website is to help you make the most of your time at MIA with
-        schedules, stage locations, venue essentials, and a custom schedule.
-      </p>
-      <div className="card-grid">
-        <div className="card">
-          <h3>Explore the lineup</h3>
-          <p>Browse artists and decide who you want to see.</p>
-        </div>
-        <div className="card">
-          <h3>Build your schedule</h3>
-          <p>Create a personal itinerary for the performances you want.</p>
-        </div>
-        <div className="card">
-          <h3>Find key locations</h3>
-          <p>Locate stages, food, bathrooms, and emergency stations quickly.</p>
-        </div>
+    <Container>
+      <div className="hero-section text-center">
+        <h1>Plan Your Perfect Festival Day</h1>
+        <p className="lead">
+          Explore the lineup, check stage locations, find important venue info,
+          and build a personalized schedule with countdown alerts.
+        </p>
       </div>
-    </section>
+
+      <Row className="g-4">
+        <Col md={4}>
+          <Card className="h-100 shadow-sm">
+            <Card.Body>
+              <Card.Title>Explore the Lineup</Card.Title>
+              <Card.Text>
+                Browse artists and find performances you do not want to miss.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4}>
+          <Card className="h-100 shadow-sm">
+            <Card.Body>
+              <Card.Title>Build Your Schedule</Card.Title>
+              <Card.Text>
+                Add performances to your planner and create your own itinerary.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4}>
+          <Card className="h-100 shadow-sm">
+            <Card.Body>
+              <Card.Title>Navigate the Venue</Card.Title>
+              <Card.Text>
+                Find stages, food vendors, bathrooms, and emergency stations.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
 function Lineup() {
   return (
-    <section>
-      <h2>Artist Lineup</h2>
-      <div className="card-grid">
+    <Container>
+      <h2 className="mb-4">Artist Lineup</h2>
+      <Row className="g-4">
         {scheduleData.map((show) => (
-          <div className="card" key={show.id}>
-            <h3>{show.artist}</h3>
-            <p><strong>Stage:</strong> {show.stage}</p>
-            <p><strong>Starts:</strong> {new Date(show.start).toLocaleString()}</p>
-          </div>
+          <Col md={4} key={show.id}>
+            <Card className="h-100 shadow-sm">
+              <Card.Body>
+                <Card.Title>{show.artist}</Card.Title>
+                <Card.Text><strong>Stage:</strong> {show.stage}</Card.Text>
+                <Card.Text>
+                  <strong>Starts:</strong> {new Date(show.start).toLocaleString()}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </div>
-    </section>
+      </Row>
+    </Container>
   );
 }
 
 function Schedule({ onAdd }) {
   return (
-    <section>
-      <h2>Performance Schedule</h2>
-      <div className="list">
+    <Container>
+      <h2 className="mb-4">Performance Schedule</h2>
+      <Row className="g-3">
         {scheduleData.map((show) => (
-          <div className="list-item" key={show.id}>
-            <div>
-              <h3>{show.artist}</h3>
-              <p>{show.stage}</p>
-              <p>{new Date(show.start).toLocaleString()}</p>
-            </div>
-            <button onClick={() => onAdd(show)}>Add to Planner</button>
-          </div>
+          <Col xs={12} key={show.id}>
+            <Card className="shadow-sm">
+              <Card.Body className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div>
+                  <Card.Title>{show.artist}</Card.Title>
+                  <Card.Text className="mb-1">{show.stage}</Card.Text>
+                  <Card.Text className="mb-0">
+                    {new Date(show.start).toLocaleString()}
+                  </Card.Text>
+                </div>
+                <Button onClick={() => onAdd(show)}>Add to Planner</Button>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </div>
-    </section>
+      </Row>
+    </Container>
   );
 }
 
 function MapPage() {
   return (
-    <section>
-      <h2>Festival Locations</h2>
-      <div className="card-grid">
+    <Container>
+      <h2 className="mb-4">Festival Locations</h2>
+      <Row className="g-4">
         {locations.map((location) => (
-          <div className="card" key={location.name}>
-            <h3>{location.name}</h3>
-            <p>{location.type}</p>
-          </div>
+          <Col md={4} key={location.id}>
+            <Card className="h-100 shadow-sm">
+              <Card.Body>
+                <Card.Title>{location.name}</Card.Title>
+                <Card.Text>{location.type}</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </div>
-    </section>
+      </Row>
+    </Container>
   );
 }
 
 function Tickets() {
   return (
-    <section>
-      <h2>Tickets</h2>
-      <p>Choose the ticket option that works best for your festival experience.</p>
-      <div className="card-grid">
-        <div className="card">
-          <h3>General Admission</h3>
-          <p>Access to festival grounds and performances.</p>
-        </div>
-        <div className="card">
-          <h3>VIP</h3>
-          <p>Premium viewing areas and upgraded amenities.</p>
-        </div>
-      </div>
-      <a
-        className="buy-link"
+    <Container>
+      <h2 className="mb-4">Tickets</h2>
+      <Row className="g-4 mb-4">
+        <Col md={6}>
+          <Card className="h-100 shadow-sm">
+            <Card.Body>
+              <Card.Title>General Admission</Card.Title>
+              <Card.Text>
+                Access to festival grounds and all general performances.
+              </Card.Text>
+              <Card.Text><strong>Price:</strong> $149</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={6}>
+          <Card className="h-100 shadow-sm">
+            <Card.Body>
+              <Card.Title>VIP</Card.Title>
+              <Card.Text>
+                Premium viewing areas, faster entry, and upgraded amenities.
+              </Card.Text>
+              <Card.Text><strong>Price:</strong> $299</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+
+      <Button
+        as="a"
         href="https://www.ticketmaster.com/"
         target="_blank"
         rel="noreferrer"
       >
         Purchase Tickets
-      </a>
-    </section>
+      </Button>
+    </Container>
   );
 }
 
@@ -184,37 +248,49 @@ function Planner({ saved, onRemove }) {
   const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
 
   return (
-    <section>
-      <h2>My Planner</h2>
+    <Container>
+      <h2 className="mb-4">My Planner</h2>
+
       {nextEvent ? (
-        <div className="countdown-box">
-          <h3>Next Event</h3>
-          <p>{nextEvent.artist} at {nextEvent.stage}</p>
-          <p>Starts in {hours}h {minutes}m {seconds}s</p>
-        </div>
+        <Card className="mb-4 shadow-sm border-primary">
+          <Card.Body>
+            <Card.Title>Next Event</Card.Title>
+            <Card.Text>
+              {nextEvent.artist} at {nextEvent.stage}
+            </Card.Text>
+            <Card.Text>
+              Starts in {hours}h {minutes}m {seconds}s
+            </Card.Text>
+          </Card.Body>
+        </Card>
       ) : (
         <p>No upcoming saved events yet.</p>
       )}
 
-      <div className="list">
-        {saved.length === 0 ? (
-          <p>You have not added any performances yet.</p>
-        ) : (
-          [...saved]
+      {saved.length === 0 ? (
+        <p>You have not added any performances yet.</p>
+      ) : (
+        <ListGroup>
+          {[...saved]
             .sort((a, b) => new Date(a.start) - new Date(b.start))
             .map((show) => (
-              <div className="list-item" key={show.id}>
+              <ListGroup.Item
+                key={show.id}
+                className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"
+              >
                 <div>
-                  <h3>{show.artist}</h3>
-                  <p>{show.stage}</p>
-                  <p>{new Date(show.start).toLocaleString()}</p>
+                  <div className="fw-bold">{show.artist}</div>
+                  <div>{show.stage}</div>
+                  <div>{new Date(show.start).toLocaleString()}</div>
                 </div>
-                <button onClick={() => onRemove(show.id)}>Remove</button>
-              </div>
-            ))
-        )}
-      </div>
-    </section>
+                <Button variant="outline-danger" onClick={() => onRemove(show.id)}>
+                  Remove
+                </Button>
+              </ListGroup.Item>
+            ))}
+        </ListGroup>
+      )}
+    </Container>
   );
 }
 
@@ -241,16 +317,18 @@ function App() {
 
   return (
     <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lineup" element={<Lineup />} />
-          <Route path="/schedule" element={<Schedule onAdd={handleAdd} />} />
-          <Route path="/map" element={<MapPage />} />
-          <Route path="/planner" element={<Planner saved={savedShows} onRemove={handleRemove} />} />
-          <Route path="/tickets" element={<Tickets />} />
-        </Routes>
-      </Layout>
+      <SiteNavbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/lineup" element={<Lineup />} />
+        <Route path="/schedule" element={<Schedule onAdd={handleAdd} />} />
+        <Route path="/map" element={<MapPage />} />
+        <Route
+          path="/planner"
+          element={<Planner saved={savedShows} onRemove={handleRemove} />}
+        />
+        <Route path="/tickets" element={<Tickets />} />
+      </Routes>
     </HashRouter>
   );
 }
