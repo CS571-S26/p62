@@ -11,6 +11,7 @@ import {
   ListGroup
 } from "react-bootstrap";
 import "./App.css";
+import lineupImg from "./assets/lineup.png";
 
 const scheduleData = [
   {
@@ -318,7 +319,11 @@ function Home() {
           and build a personalized schedule with countdown alerts.
         </p>
       </div>
-
+        <img
+          src={lineupImg}
+          alt="Festival lineup poster"
+          className="lineup-image"
+        />
       <Row className="g-4">
         <Col md={4}>
           <Card className="h-100 shadow-sm">
