@@ -15,7 +15,7 @@ function Home() {
           <Col md={4}>
             <FeatureCard
               title="Explore the Lineup"
-              text="Browse artists and find performances you do not want to miss."
+              text="Browse artists and find performances you don't want to miss."
               to="/lineup"
               buttonText="View Lineup"
             />
@@ -23,7 +23,7 @@ function Home() {
           <Col md={4}>
             <FeatureCard
               title="Build Your Schedule"
-              text="Add performances to your planner and create your own itinerary."
+              text="Add performances to your planner so you never miss your favorite artist."
               to="/schedule"
               buttonText="View Schedule"
             />

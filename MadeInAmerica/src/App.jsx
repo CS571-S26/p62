@@ -40,7 +40,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/lineup" element={<Lineup />} />
-          <Route path="/schedule" element={<Schedule onAdd={handleAdd} />} />
+          <Route path="/schedule"element={<Schedule onAdd={handleAdd} saved={savedShows} />}
+/>
           <Route path="/map" element={<MapPage />} />
           <Route
             path="/planner"
