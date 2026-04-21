@@ -1,13 +1,27 @@
-import './App.css'
+import { Container } from "react-bootstrap";
+import PageHeader from "../components/PageHeader";
+import ScheduleItem from "../components/ScheduleItem";
+import scheduleData from "../data/schedule";
 
-function App() {
+function Schedule({ onAdd }) {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <>
+      <PageHeader
+        title="Festival Schedule"
+        subtitle="Browse all performances and add them to your planner."
+      />
+
+      <Container className="pb-5">
+        {scheduleData.map((item) => (
+          <ScheduleItem
+            key={item.id}
+            item={item}
+            onAdd={onAdd}
+          />
+        ))}
+      </Container>
+    </>
+  );
 }
 
-export default App
+export default Schedule;

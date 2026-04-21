@@ -1,13 +1,14 @@
-import './App.css'
+import { Card } from "react-bootstrap";
 
-function App() {
+function LocationCard({ name, description }) {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <Card className="h-100 shadow-sm">
+      <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Card.Text>{description}</Card.Text>
+      </Card.Body>
+    </Card>
+  );
 }
 
-export default App
+export default LocationCard;

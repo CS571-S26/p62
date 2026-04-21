@@ -1,13 +1,32 @@
-import './App.css'
+import { Container, Row, Col } from "react-bootstrap";
+import PageHeader from "../components/PageHeader";
+import ArtistCard from "../components/ArtistCard";
+import uniqueArtists from "../data/artists";
 
-function App() {
+function Lineup() {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <>
+      <PageHeader
+        title="Festival Lineup"
+        subtitle="Browse the artists performing at Made In America."
+      />
+
+      <Container className="pb-5">
+        <Row className="g-4">
+          {uniqueArtists.map((artist) => (
+            <Col key={artist.id} sm={12} md={6} lg={4}>
+              <ArtistCard
+                artist={artist.artist}
+                stage={artist.stage}
+                time={new Date(artist.start).toLocaleString()}
+                wikiUrl={artist.wikiUrl}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </>
+  );
 }
 
-export default App
+export default Lineup;

@@ -1,13 +1,18 @@
-import './App.css'
+import { Card, Button } from "react-bootstrap";
 
-function App() {
+function ScheduleItem({ item, onAdd }) {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <Card className="mb-3 shadow-sm">
+      <Card.Body>
+        <Card.Title>{item.artist}</Card.Title>
+        <Card.Text>{item.stage}</Card.Text>
+        <Card.Text>
+          {item.start} - {item.end}
+        </Card.Text>
+        <Button onClick={() => onAdd(item)}>Add to Planner</Button>
+      </Card.Body>
+    </Card>
+  );
 }
 
-export default App
+export default ScheduleItem;

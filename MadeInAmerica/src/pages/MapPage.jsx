@@ -1,13 +1,26 @@
-import './App.css'
+import { Container, Row, Col } from "react-bootstrap";
+import PageHeader from "../components/PageHeader";
+import mapImg from "../assets/map.jpg";
 
-function App() {
+
+
+function MapPage() {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <>
+      <PageHeader
+        title="Festival Map"
+        subtitle="Find stages, food, bathrooms, and emergency stations."
+      />
+
+      <Container className="pb-5">
+                <img
+           src={mapImg}
+           alt="Made In America festival map"
+           className="img-fluid my-4"
+         />
+      </Container>
+    </>
+  );
 }
 
-export default App
+export default MapPage;

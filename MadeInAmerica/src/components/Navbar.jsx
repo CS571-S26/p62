@@ -1,13 +1,28 @@
-import './App.css'
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
-function App() {
+function SiteNavbar() {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Container>
+        <Navbar.Brand as={NavLink} to="/">
+          Made In America
+        </Navbar.Brand>
+
+        <Navbar.Toggle aria-controls="main-navbar" />
+        <Navbar.Collapse id="main-navbar">
+          <Nav className="ms-auto">
+            <Nav.Link as={NavLink} to="/">Home</Nav.Link>
+            <Nav.Link as={NavLink} to="/lineup">Lineup</Nav.Link>
+            <Nav.Link as={NavLink} to="/schedule">Schedule</Nav.Link>
+            <Nav.Link as={NavLink} to="/map">Map</Nav.Link>
+            <Nav.Link as={NavLink} to="/planner">Planner</Nav.Link>
+            <Nav.Link as={NavLink} to="/tickets">Tickets</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
-export default App
+export default SiteNavbar;

@@ -1,13 +1,23 @@
-import './App.css'
+import { Card, Button } from "react-bootstrap";
 
-function App() {
+function ArtistCard({ artist, stage, time, wikiUrl }) {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <Card className="h-100 shadow-sm">
+      <Card.Body>
+        <Card.Title>{artist}</Card.Title>
+        <Card.Text>Stage: {stage}</Card.Text>
+        <Card.Text>Time: {time}</Card.Text>
+        <Button
+          variant="outline-dark"
+          href={wikiUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn More
+        </Button>
+      </Card.Body>
+    </Card>
+  );
 }
 
-export default App
+export default ArtistCard;

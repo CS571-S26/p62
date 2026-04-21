@@ -1,13 +1,32 @@
-import './App.css'
+import { Container, ListGroup } from "react-bootstrap";
+import PageHeader from "../components/PageHeader";
+import PlannerItem from "../components/PlannerItem";
 
-function App() {
+function Planner({ saved, onRemove }) {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <>
+      <PageHeader
+        title="My Planner"
+        subtitle="Your saved performances with live countdowns."
+      />
+
+      <Container className="pb-5">
+        {saved.length === 0 ? (
+          <p>You have not added any performances yet.</p>
+        ) : (
+          <ListGroup>
+            {saved.map((item) => (
+              <PlannerItem
+                key={item.id}
+                item={item}
+                onRemove={onRemove}
+              />
+            ))}
+          </ListGroup>
+        )}
+      </Container>
+    </>
+  );
 }
 
-export default App
+export default Planner;
