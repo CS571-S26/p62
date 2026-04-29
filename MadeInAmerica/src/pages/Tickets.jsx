@@ -5,17 +5,17 @@ import TicketCard from "../components/TicketCard";
 
 const ticketOptions = [
   {
-    title: "General Admission",
+    title: "Single Day",
     price: "$149",
-    perks: ["Full weekend access", "Access to all stages", "Food and merch vendors"],
+    perks: ["One day access", "Access to all stages", "Food and merch vendors"],
   },
   {
     title: "VIP",
     price: "$299",
-    perks: ["VIP viewing areas", "Dedicated entry lane", "Premium lounge access"],
+    perks: ["VIP viewing areas", "Dedicated entry lane", "VIP lounge w/ food and bar", "Exclusive Merchandise"],
   },
   {
-    title: "Weekend Pass",
+    title: "General Admission",
     price: "$199",
     perks: ["Two-day festival access", "Re-entry allowed", "Mobile ticket delivery"],
   },
@@ -55,9 +55,9 @@ function TicketAlertForm({ ticketType, setTicketType }) {
               value={ticketType}
               onChange={(e) => setTicketType(e.target.value)}
             >
-              <option>General Admission</option>
+              <option>Single Day</option>
               <option>VIP</option>
-              <option>Weekend Pass</option>
+              <option>General Admission</option>
             </Form.Select>
           </Form.Group>
 
