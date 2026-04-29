@@ -25,7 +25,7 @@ function App() {
   function handleAdd(show) {
     setSavedShows((current) => {
       if (current.some((item) => item.id === show.id)) return current;
-      return [...current, show];
+      return [...current, show].sort((a, b) => new Date(a.start) - new Date(b.start));
     });
   }
 
