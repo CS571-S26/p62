@@ -1,13 +1,11 @@
-import './App.css'
+import { Badge } from "react-bootstrap";
 
-function App() {
+function CountdownBadge({ countdown }) {
   return (
-    <div id="center">
-      <h1>Made In America </h1>
-      <h2>Website Is Currently Under Construction!</h2>
-      <p>This site is currently being built. Please check back later!</p>
-    </div>
-  )
+    <Badge bg="secondary" aria-label={`Countdown: ${countdown}`}>
+      Countdown: {countdown}
+    </Badge>
+  );
 }
 
-export default App
+export default CountdownBadge;

@@ -1,5 +1,7 @@
-import { ListGroup, Button, Badge } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
+
 import { useEffect, useState } from "react";
+import CountdownBadge from "./CountdownBadge";
 
 function getCountdown(startTime) {
   const now = new Date();
@@ -43,9 +45,7 @@ function PlannerItem({ item, onRemove }) {
           {new Date(item.start).toLocaleString()} -{" "}
           {new Date(item.end).toLocaleTimeString()}
         </div>
-        <Badge bg="dark" className="mt-2">
-          Countdown: {countdown}
-        </Badge>
+        <CountdownBadge countdown={countdown} />
       </div>
 
       <Button variant="danger" size="sm" onClick={() => onRemove(item.id)}>

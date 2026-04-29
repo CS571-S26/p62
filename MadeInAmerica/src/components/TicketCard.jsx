@@ -1,17 +1,25 @@
 import { Card, Button } from "react-bootstrap";
 
-function TicketCard({ title, price, perks }) {
+function TicketCard({ title, price, perks, onSelect }) {
   return (
     <Card className="h-100 shadow-sm">
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{price}</Card.Subtitle>
+      <Card.Body className="d-flex flex-column">
+        <Card.Title as="h2">{title}</Card.Title>
+        <Card.Subtitle className="mb-3 text-muted">{price}</Card.Subtitle>
+
         <ul>
           {perks.map((perk) => (
             <li key={perk}>{perk}</li>
           ))}
         </ul>
-        <Button>Purchase</Button>
+
+        <Button
+          className="mt-auto"
+          aria-label={`Select ${title} ticket option`}
+          onClick={() => onSelect(title)}
+        >
+          Select ticket
+        </Button>
       </Card.Body>
     </Card>
   );

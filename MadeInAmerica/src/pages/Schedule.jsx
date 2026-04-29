@@ -9,6 +9,7 @@ function Schedule({ onAdd, saved }) {
       <PageHeader
         title="Festival Schedule"
         subtitle="Browse all performances and add them to your planner."
+        classname = "text-primary"
       />
 
       <Container className="pb-5">

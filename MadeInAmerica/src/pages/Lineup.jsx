@@ -5,10 +5,11 @@ import uniqueArtists from "../data/artists";
 
 function Lineup() {
   return (
-    <>
+    < >
       <PageHeader
         title="Festival Lineup"
         subtitle="Browse the artists performing at Made In America."
+         titleClassName="lineup-title"
       />
 
       <Container className="pb-5">
